@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style type="text/css">
+        h1{font-size: 30px; font-family: Sans-serif;}
+        div.mybtn{ vertical-align: bottom; text-align: center; }
+        .ui-btn {  font-size: 150px; width: 100px !important; }
+                div.centre
+                { 
+                      width: 300px;
+                      display: block;
+                      margin-left: auto;
+                      margin-right: auto;
+                }
+        </style>
+        <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="//code.jquery.com/jquery.js"></script>
+        <script src='/socket.io/socket.io.js'></script>
+        <script src="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+        $(document).ready(function(){
+              // Check browser support
+            if (typeof(Storage) != "undefined") {
+                // Store
+                if (localStorage.username == null) {
+                    var person = prompt("Please Enter Username To Get Points", "");
+                    localStorage.username = person;
+                    }
+                } else {
+                window.alert("Sorry! Your browser Not Support This Game :(\n Use Firefox, Chrome For Better Experience. ");
+            }
+          });
+                
+        </script>
+
+
+        <script>
+
+            $(function() {
+                var socket = io.connect(window.location.href);
+                var a = ['','','',''];
+                var enduser = '';
+                var transdata = localStorage.username;
+                socket.on('message:server', function(data) {
+                    enduser = data.transdata;
+                    $("#messages").prepend(
+                        '<tr><td><h1>' + data.message + '</h1></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>&#64;</b> </td><td><h1>'+ 
+                        data.transdata +'</h1></td></tr>'
+                    );
+                        a.shift();
+                        a.push(data.message);                    
+                });
+                var message='';
+                $("#valueX").on('click', function(event) {
+                      event.preventDefault();
+                       message = "X";
+                      socket.emit('message:client', {message: message, transdata: transdata});
+                      $("#messages").prepend(
+                        '<tr><td><h1>' + message + '</h1></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <b>&#64;</b> </td><td><h1>'+ localStorage.username +'</h1></td></tr>'
+                      );
+                        a.shift();
+                        a.push(message);
+                        if (a[0] == 'O' && a[1] == 'O' && a[2] == 'O' && a[3] == 'O' || 
+                                a[0] == 'X' && a[1] == 'X' && a[2] == 'X' && a[3] == 'X') {
+                            if (localStorage.username != enduser) {
+                             if (typeof(Storage) != "undefined") {
+                                if (localStorage.clickcount) {
+                                    localStorage.clickcount = Number(localStorage.clickcount) + 1;
+                                } else {
+                                    localStorage.clickcount = 1;   
+                                }
+                                document.getElementById('score').innerHTML = localStorage.clickcount;
+                            }else {
+                                    window.alert("Sorry! Your browser Not Support This Game :(\n Use Firefox, Chrome For Better Experience. ");
+                                } 
+                            }
+                        }
+                    });
+                $("#valueO").on('click', function(event) {
+                      event.preventDefault();
+                       message = "O";
+                      socket.emit('message:client', {message: message, transdata: transdata});
+                      $("#messages").prepend(
+                        '<tr><td><h1>' + message + '</h1></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <b>&#64;</b> </td><td><h1>'+ localStorage.username +'</h1></td></tr>'
+                      );
+                        a.shift();
+                        a.push(message);
+                        if (a[0] == 'O' && a[1] == 'O' && a[2] == 'O' && a[3] == 'O' || 
+                                a[0] == 'X' && a[1] == 'X' && a[2] == 'X' && a[3] == 'X') {
+                            if (localStorage.username != enduser) {
+                             if (typeof(Storage) != "undefined") {
+                                if (localStorage.clickcount) {
+                                    localStorage.clickcount = Number(localStorage.clickcount) + 1;
+                                } else {
+                                    localStorage.clickcount = 1;  
+                                }
+                                document.getElementById('score').innerHTML = localStorage.clickcount;
+                            }else {
+                                    window.alert("Sorry! Your browser Not Support This Game :(\n Use Firefox, Chrome For Better Experience. ");
+                                } 
+                            }
+                        }
+                    });
+                socket.on('error', function() {
+                    console.error(arguments)
+                });
+            });
+        </script>
+        <title>X/O GAME</title>
+    </head>
+    <body>
+        <div data-role="page" class="ui-page" >
+        <div data-role="header" data-position="fixed" data-fullscreen="true">
+            <h1>Welcome &#64; TicTacToe X/O GAME</h1>
+        </div>
+        <div data-role="main" class="ui-content cont"  >
+        <br><br><br><p id="score"></p>
+            <div class="centre">       
+                <table  id="messages"></table>
+            </div>
+        </div>
+          <div data-role="footer" data-position="fixed" data-fullscreen="true">
+            <div data-role="main" class="ui-content mybtn" >
+            <div data-role="controlgroup" data-type="horizontal">      
+                    <button id="valueX" class="ui-btn"><b>X</b></button>
+                    <button id="valueO" class="ui-btn"><b>O</b></button>   
+            </div>
+            </div>
+          </div>
+</div>
+
+    </body>
+</html>
