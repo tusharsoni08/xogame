@@ -1,6 +1,7 @@
 xogame
 ======
 
+You can access it from here:  https://nameless-depths-5926.herokuapp.com/
 Multiplayer and twisted version of old tic-tac-toe game with Node.js &amp; Socket.io
 <h2>About X/O GAME-</h2>
     1. Match first 4 same X/O
@@ -11,4 +12,4 @@ Multiplayer and twisted version of old tic-tac-toe game with Node.js &amp; Socke
     6. THIS GAME IS NOT A PERSONAL GAME, ITS GROUP GAME. SO PLAY THIS WITH FRIENDS :)
     7. ALL USER OF THIS GAME ARE PLAYER OF THIS GAME
     8. Share your Score by click on FB-Share button
-    9. Let's Play! Have FuN*
+    9. Let's Play! Have FuN* (More Player More Fun!!)
