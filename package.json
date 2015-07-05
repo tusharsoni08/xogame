@@ -4,11 +4,11 @@
         "socket.io": "0.9.x"
     },
     "description": "Demonstrates a chat server using socket.io.",
-    "name": "server-2",
+    "name": "nameless-depths-5926",
     "private": true,
     "version": "0.0.1"
     "engines": {
-    "node": "0.10.x"
-      }
+       "node": "0.10.x"
+    }
     
 }
