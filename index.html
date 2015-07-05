@@ -53,7 +53,7 @@
         $(document).ready(function() {
             if (typeof(Storage) != "undefined") {
                 if (localStorage.username == null) {
-                    var person = prompt("Please Enter Username To Identify You For Players", "");
+                    var person = prompt("PLEASE ENTER YOUR NAME: ", "");
                     localStorage.username = person
                 }
             } else {
