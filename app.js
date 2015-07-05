@@ -10,7 +10,7 @@ var io = require('socket.io').listen(server);
 app.get('/', function(req, res) {
     fs.createReadStream('index.html').pipe(res);
 });
-app.disable('x-powered-by');
+//app.disable('x-powered-by');
 // sockets
 io.sockets.on('connection', function(client){
 
