@@ -3,9 +3,9 @@
 var fs = require('fs');
 var express = require('express');
 var app = express();
-var port = process.env.PORT || 443;
+var port = process.env.PORT;
 var server = app.listen(port);
-var io = require('socket.io').listen(server);
+var io = require('socket.io').listen(port);
 
 // index.html 
 app.get('/', function(req, res) {
