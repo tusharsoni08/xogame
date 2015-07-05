@@ -3,9 +3,8 @@
 var fs = require('fs');
 var express = require('express');
 var app = express();
-var port = process.env.PORT;
-var server = app.listen(port);
-var io = require('socket.io').listen(port);
+var server = app.listen(process.env.PORT);
+var io = require('socket.io').listen(server);
 
 // index.html 
 app.get('/', function(req, res) {
