@@ -1,13 +1,16 @@
 {
+    "scripts": {
+    "start": "node app.js"
+    },
     "dependencies": {
         "express": "3.x",
-        "socket.io": "0.9.x"
+        "socket.io": "0.9.x",
+        "body-parser": "^1.0.2",
+        "method-override": "^1.0.0"
     },
     "description": "Demonstrates a chat server using socket.io.",
     "name": "nameless-depths-5926",
     "private": true,
     "version": "0.0.1"
-    "scripts": {
-   "start": "node app.js"
-   }
+    
 }
