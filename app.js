@@ -3,7 +3,8 @@
 var fs = require('fs');
 var express = require('express');
 var app = express();
-var server = app.listen(8080,'0.0.0.0');
+var port = process.env.PORT || 443
+var server = app.listen(port);
 var io = require('socket.io').listen(server);
 
 // index.html 
