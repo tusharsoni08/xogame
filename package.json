@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "scripts": {
     "start": "node app.js"
@@ -14,3 +15,16 @@
     "version": "0.0.1"
     
 }
+||||||| merged common ancestors
+=======
+{
+    "dependencies": {
+        "express": "3.x",
+        "socket.io": "0.9.x"
+    },
+    "description": "Demonstrates a chat server using socket.io.",
+    "name": "server-2",
+    "private": true,
+    "version": "0.0.1"
+}
+>>>>>>> 72e858e083ffd9909c7e9ba393edf60d04f09929
