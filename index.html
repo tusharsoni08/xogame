@@ -55,6 +55,9 @@
                 if (localStorage.username == null) {
                     var person = prompt("PLEASE ENTER YOUR NAME: ", "");
                     localStorage.username = person
+                    localStorage.myuser = true
+                    localStorage.otheruser = false
+                    localStorage.tmpcount = 0
                 }
             } else {
                 window.alert("Sorry! Your browser Not Support This Game :(\n Use Firefox, Chrome For Better Experience. ")
@@ -84,12 +87,27 @@
                 $("#messages").prepend('<tr><td><h1 style="color:#009452">' + message + '</h1></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <b>&#64;</b> </td><td><h1 style="color:#009452">' + localStorage.username + '</h1></td></tr>');
                 a.shift();
                 a.push(message);
-                if (a[0] == 'O' && a[1] == 'O' && a[2] == 'O' && a[3] == 'O' || a[0] == 'X' && a[1] == 'X' && a[2] == 'X' && a[3] == 'X') {
+                if ((a[0] == 'X' && a[1] == 'X' && a[2] == 'X' && a[3] == 'X')) {
                     if (localStorage.username != enduser) {
                         if (typeof(Storage) != "undefined") {
-                            if (localStorage.clickcount) {
-                                localStorage.clickcount = Number(localStorage.clickcount) + 1
-                            } else {
+                            if ((localStorage.myuser == 'true') && localStorage.clickcount) {
+                                console.log("I AM X");
+
+                                if((localStorage.tmpcount) > 4){
+                                  localStorage.clickcount = Number(localStorage.clickcount) + 1
+                                  localStorage.tmpcount = Number(localStorage.tmpcount) + 1
+                                    localStorage.myuser = 'false';
+                                    localStorage.otheruser = 'true';
+                                    localStorage.tmpcount = 0
+
+                                }
+
+                            }else if((localStorage.myuser == 'false') && (localStorage.otheruser == 'true')){
+                                console.log("otheruser X");
+                                  localStorage.myuser = 'true';
+                                  localStorage.otheruser == 'false'
+                            }else {
+                                console.log("I AM Hi 1st -X");
                                 localStorage.clickcount = 1
                             }
                             document.getElementById('score').innerHTML = localStorage.clickcount
@@ -109,12 +127,26 @@
                 $("#messages").prepend('<tr><td><h1 style="color:#009452">' + message + '</h1></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <b>&#64;</b> </td><td><h1 style="color:#009452">' + localStorage.username + '</h1></td></tr>');
                 a.shift();
                 a.push(message);
-                if (a[0] == 'O' && a[1] == 'O' && a[2] == 'O' && a[3] == 'O' || a[0] == 'X' && a[1] == 'X' && a[2] == 'X' && a[3] == 'X') {
+                if ((a[0] == 'O' && a[1] == 'O' && a[2] == 'O' && a[3] == 'O')) {
                     if (localStorage.username != enduser) {
                         if (typeof(Storage) != "undefined") {
-                            if (localStorage.clickcount) {
-                                localStorage.clickcount = Number(localStorage.clickcount) + 1
-                            } else {
+                            if ((localStorage.myuser == 'true') && localStorage.clickcount) {
+                                console.log("I AM O");
+
+                                if((localStorage.tmpcount) > 4){
+                                  localStorage.clickcount = Number(localStorage.clickcount) + 1
+                                  localStorage.tmpcount = Number(localStorage.tmpcount) + 1
+                                    localStorage.myuser = 'false';
+                                    localStorage.otheruser = 'true';
+                                    localStorage.tmpcount = 0
+
+                                }
+
+                            }else if((localStorage.myuser == 'false') && (localStorage.otheruser == 'true')){
+                                console.log("otheruser O");
+                                  localStorage.myuser = 'true';
+                            }else {
+                                console.log("I AM Hi 1st -O");
                                 localStorage.clickcount = 1
                             }
                             document.getElementById('score').innerHTML = localStorage.clickcount
