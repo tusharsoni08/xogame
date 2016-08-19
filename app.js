@@ -4,7 +4,7 @@
 var fs = require('fs');
 var express = require('express');
 var app = express();
-var server = app.listen(8080, 'localhost');//app.listen(process.env.PORT);
+var server = app.listen(process.env.PORT);
 var io = require('socket.io').listen(server);
 
 // index.html
@@ -31,7 +31,7 @@ var app = express();
 var server = app.listen(8080,'0.0.0.0');
 var io = require('socket.io').listen(server);
 
-// index.html 
+// index.html
 app.get('/', function(req, res) {
     fs.createReadStream('index.html').pipe(res);
 });
